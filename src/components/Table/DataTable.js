@@ -65,11 +65,19 @@ const DataTable = ({ users }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     fetch({ pagination });
 
     //eslint-disable-next-line
   }, []);
+
+  const handleTableChange = (pagination, filters, sorter) => {
+    fetch({
+      sortField: sorter.field,
+      sortOrder: sorter.order,
+      pagination,
+      ...filters
+    });
+  };
 
   const fetch = (params = {}) => {
     setLoading(true);
@@ -78,6 +86,7 @@ const DataTable = ({ users }) => {
         data: getRandomuserParams(params)
       })
       .then(data => {
+        console.log(data.data);
         setLoading(false);
         setData(data.data);
         setPagination({
@@ -94,6 +103,8 @@ const DataTable = ({ users }) => {
         rowKey={(record, index) => index}
         dataSource={data}
         loading={loading}
+        pagination={pagination}
+        onChange={handleTableChange}
       />
     </div>
   );
