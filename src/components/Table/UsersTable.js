@@ -21,7 +21,7 @@ const UsersTable = ({ users, loading, pagination, handleTableChange }) => {
           ref={node => {
             searchInput = node;
           }}
-          placeholder={`Search ${nameText}`}
+          placeholder={`Search by ${nameText}`}
           value={selectedKeys[0]}
           onChange={e =>
             setSelectedKeys(e.target.value ? [e.target.value] : [])
@@ -94,6 +94,14 @@ const UsersTable = ({ users, loading, pagination, handleTableChange }) => {
       title: 'First Name',
       dataIndex: 'first_name',
       sorter: (a, b) => a.first_name.localeCompare(b.first_name),
+      render(text, record) {
+        return {
+          props: {
+            style: { background: '#0390fc' }
+          },
+          children: <div>{text}</div>
+        };
+      },
       sortDirections: ['ascend', 'descend'],
       key: 'first_name',
       ...getColumnSearchProps('first_name', 'First Name')
@@ -178,6 +186,9 @@ const UsersTable = ({ users, loading, pagination, handleTableChange }) => {
         loading={loading}
         pagination={pagination}
         onChange={handleTableChange}
+        scroll={{
+          y: 385
+        }}
       />
     </div>
   );
