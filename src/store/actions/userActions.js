@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { FETCH_USERS } from './actionTypes.js';
+import {
+  FETCH_USERS,
+  SEARCH_USERS_SUCCESS,
+  SEARCH_USERS_ERROR
+} from './actionTypes.js';
 
 export const fetchTenUsers = () => async dispatch => {
   try {
@@ -13,5 +17,24 @@ export const fetchTenUsers = () => async dispatch => {
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const searchUsers = text => async dispatch => {
+  try {
+    const res = await axios.get(`/users?q=${text}`);
+    console.log(text);
+    console.log(res.data);
+
+    dispatch({
+      type: SEARCH_USERS_SUCCESS,
+      payload: res.data
+    });
+  } catch (err) {
+    console.error(err);
+    dispatch({
+      type: SEARCH_USERS_ERROR,
+      payload: err.message
+    });
   }
 };

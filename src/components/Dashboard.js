@@ -1,27 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchTenUsers } from '../store/actions/userActions.js';
+import { Row, Col, Typography, Layout } from 'antd';
+import { searchUsers } from '../store/actions/userActions.js';
+import 'antd/dist/antd.css';
 import DataTable from './Table/DataTable.js';
+import SearchBar from './SearchBar.js';
 
-const Dashboard = ({ users, fetchTenUsers }) => {
-  useEffect(() => {
-    fetchTenUsers();
-  }, [fetchTenUsers]);
+const { Title } = Typography;
+
+const Dashboard = ({ users, searchUsers }) => {
+  const [loading, setLoading] = useState(false);
+
+  const submitSearch = text => {
+    searchUsers(text);
+  };
 
   return (
     <div>
-      <h1>Welcome to the BtoBet Task</h1>
-      {/* {users && users.map((user, index) => <Table key={index} user={user} />)} */}
-      {users && <DataTable users={users} />}
+      <Layout>
+        <Row justify="center" style={{ marginTop: '30px' }}>
+          <Col sm={20}>
+            <Title style={{ textAlign: 'center' }}>
+              Table Data Viewer Task
+            </Title>
+            <SearchBar
+              submitSearch={text => submitSearch(text)}
+              loading={loading}
+            />
+          </Col>
+          <Col sm={20}>
+            <DataTable />
+          </Col>
+        </Row>
+      </Layout>
     </div>
   );
 };
 
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    users: state.user.users
-  };
-};
-
-export default connect(mapStateToProps, { fetchTenUsers })(Dashboard);
+export default connect(null, { searchUsers })(Dashboard);
