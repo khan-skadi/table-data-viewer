@@ -2,13 +2,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-Please run the following scripts to see the project.
-
 ### `npm run dev`
 
-Run the json-server back-end first.
+Runs the json-server and the client concurrently.
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
+Runs the client.
+
+### `npm run json-server`
+
+Runs the json-server
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
