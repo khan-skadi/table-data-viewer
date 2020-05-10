@@ -5,7 +5,6 @@ import 'antd/dist/antd.css';
 
 import UsersTable from '../table/UsersTable.js';
 import SearchBar from '../search/SearchBar.js';
-import LazyLoad from 'react-lazyload';
 
 const { Title, Text } = Typography;
 
@@ -117,6 +116,7 @@ const Dashboard = () => {
   }, []);
 
   const handleTableChange = (pagination, filters, sorter) => {
+    console.log(pagination);
     setPagination(pagination);
   };
 
@@ -176,14 +176,12 @@ const Dashboard = () => {
               style={{ color: '#0390fc' }}
             >{`Found ${rowCount} rows !`}</Text>
           ) : null}
-          <LazyLoad height={200} offset={100}>
-            <UsersTable
-              users={data}
-              loading={loading}
-              pagination={pagination}
-              handleTableChange={handleTableChange}
-            />
-          </LazyLoad>
+          <UsersTable
+            users={data}
+            loading={loading}
+            pagination={pagination}
+            handleTableChange={handleTableChange}
+          />
         </Col>
       </Row>
     </>

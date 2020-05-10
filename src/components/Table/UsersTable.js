@@ -2,6 +2,7 @@ import React, { useState, createRef } from 'react';
 import { Table, Input, Button, Space } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
+import LazyLoad from 'react-lazyload';
 import 'antd/dist/antd.css';
 
 const UsersTable = ({ users, loading, pagination, handleTableChange }) => {
@@ -179,17 +180,19 @@ const UsersTable = ({ users, loading, pagination, handleTableChange }) => {
 
   return (
     <div>
-      <Table
-        columns={columns}
-        rowKey={(record, index) => index}
-        dataSource={users}
-        loading={loading}
-        pagination={pagination}
-        onChange={handleTableChange}
-        scroll={{
-          y: 385
-        }}
-      />
+      <LazyLoad height={200} offset={100}>
+        <Table
+          columns={columns}
+          rowKey={(record, index) => index}
+          dataSource={users}
+          loading={loading}
+          pagination={pagination}
+          onChange={handleTableChange}
+          scroll={{
+            y: 385
+          }}
+        />
+      </LazyLoad>
     </div>
   );
 };
