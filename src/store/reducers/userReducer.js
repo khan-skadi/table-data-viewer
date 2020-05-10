@@ -1,5 +1,6 @@
 import {
-  FETCH_USERS,
+  FETCH_USERS_SUCCESS,
+  FETCH_USERS_ERROR,
   SEARCH_USERS_SUCCESS,
   SEARCH_USERS_ERROR
 } from '../actions/actionTypes.js';
@@ -11,11 +12,16 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USERS:
+    case FETCH_USERS_SUCCESS:
       return {
         ...state,
         users: action.payload,
         error: null
+      };
+    case FETCH_USERS_ERROR:
+      return {
+        ...state,
+        error: action.payload
       };
     case SEARCH_USERS_SUCCESS:
       return {
