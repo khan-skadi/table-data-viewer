@@ -103,21 +103,24 @@ const UsersTable = ({ users, loading, pagination, handleTableChange }) => {
       dataIndex: 'last_name',
       sorter: (a, b) => a.last_name.localeCompare(b.last_name),
       sortDirections: ['ascend', 'descend'],
-      key: 'last_name'
+      key: 'last_name',
+      ...getColumnSearchProps('last_name', 'Last Name')
     },
     {
       title: 'Username',
       dataIndex: 'username',
       sorter: (a, b) => a.username.localeCompare(b.username),
       sortDirections: ['ascend', 'descend'],
-      key: 'username'
+      key: 'username',
+      ...getColumnSearchProps('username', 'Username')
     },
     {
       title: 'Age',
       dataIndex: 'age',
       sorter: (a, b) => a.age - b.age,
       sortDirections: ['ascend', 'descend'],
-      key: 'age'
+      key: 'age',
+      ...getColumnSearchProps('age', 'Age')
     },
     {
       title: 'Gender',
@@ -129,35 +132,40 @@ const UsersTable = ({ users, loading, pagination, handleTableChange }) => {
         return a['gender'] < b['gender'] ? -1 : 1;
       },
       sortDirections: ['ascend', 'descend'],
-      key: 'gender'
+      key: 'gender',
+      ...getColumnSearchProps('gender', 'Gender')
     },
     {
       title: 'Email',
       dataIndex: 'email',
       sorter: (a, b) => a.email.localeCompare(b.email),
       sortDirections: ['ascend', 'descend'],
-      key: 'email'
+      key: 'email',
+      ...getColumnSearchProps('email', 'Email')
     },
     {
       title: 'Country',
       dataIndex: 'country',
       sorter: (a, b) => a.country.localeCompare(b.country),
       sortDirections: ['ascend', 'descend'],
-      key: 'country'
+      key: 'country',
+      ...getColumnSearchProps('country', 'Country')
     },
     {
       title: 'City',
       dataIndex: 'city',
       sorter: (a, b) => a.city.localeCompare(b.city),
       sortDirections: ['ascend', 'descend'],
-      key: 'city'
+      key: 'city',
+      ...getColumnSearchProps('city', 'City')
     },
     {
       title: 'Address',
       dataIndex: 'address',
       sorter: (a, b) => a.address.localeCompare(b.address),
       sortDirections: ['ascend', 'descend'],
-      key: 'address'
+      key: 'address',
+      ...getColumnSearchProps('address', 'Address')
     }
   ];
 
